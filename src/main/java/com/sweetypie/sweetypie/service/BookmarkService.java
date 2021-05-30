@@ -15,11 +15,9 @@ import com.sweetypie.sweetypie.repository.dynamic.DynamicBookmarkRepository;
 import com.sweetypie.sweetypie.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Service
 @RequiredArgsConstructor
 public class BookmarkService {

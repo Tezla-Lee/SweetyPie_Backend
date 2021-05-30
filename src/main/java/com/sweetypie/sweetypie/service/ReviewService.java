@@ -20,7 +20,7 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+//@Transactional
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
@@ -43,6 +43,7 @@ public class ReviewService {
         return review;
     }
 
+    @Transactional
     public void writeReview(String token, ReviewDto reviewDto) {
 
         Reservation reservation = reservationRepository.findById(reviewDto.getReservationId())
@@ -92,6 +93,7 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    @Transactional
     public void updateReview(String token, ReviewDto reviewDto) {
         Review originReview = reviewRepository
                 .findReviewByReservationId(reviewDto.getReservationId())
@@ -124,6 +126,7 @@ public class ReviewService {
         originReview.setCreatedDate(LocalDate.now());
     }
 
+    @Transactional
     public void deleteReview(String token, Long id) {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Review Not Found"));
@@ -133,7 +136,6 @@ public class ReviewService {
             throw new DataNotFoundException("Reservation Not Found");
         }
         reservation.setWrittenReview(false);
-
 
         Accommodation accommodation = reservation.getAccommodation();
         if (accommodation == null) {
