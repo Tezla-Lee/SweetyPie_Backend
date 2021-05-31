@@ -15,11 +15,13 @@ import com.sweetypie.sweetypie.repository.dynamic.DynamicBookmarkRepository;
 import com.sweetypie.sweetypie.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
@@ -34,6 +36,7 @@ public class BookmarkService {
 
     private final TokenProvider tokenProvider;
 
+    @Transactional(readOnly = true)
     public List<BookmarkListDto> findBookmarksByToken(String token) {
 
         List<BookmarkListDto> bookmarks = dynamicBookmarkRepository.findByMemberId(tokenProvider.parseTokenToGetMemberId(token));
@@ -65,7 +68,6 @@ public class BookmarkService {
     }
 
     public void deleteBookmark(String token, long accommodationId) {
-
         Bookmark bookmark = bookmarkRepository.findBookmarkByMemberIdAndAccommodationId(tokenProvider.parseTokenToGetMemberId(token), accommodationId)
                 .orElseThrow(() -> new DataNotFoundException("Bookmark Not Found"));
 
