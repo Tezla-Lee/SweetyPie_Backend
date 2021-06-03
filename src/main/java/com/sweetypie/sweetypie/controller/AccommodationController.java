@@ -3,7 +3,6 @@ package com.sweetypie.sweetypie.controller;
 import com.sweetypie.sweetypie.aspect.LogExecutionTime;
 import com.sweetypie.sweetypie.dto.AccommodationDto;
 import com.sweetypie.sweetypie.dto.SearchAccommodationDto;
-import com.sweetypie.sweetypie.model.Accommodation;
 import com.sweetypie.sweetypie.service.AccommodationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -34,12 +33,6 @@ public class AccommodationController {
     public AccommodationDto getAccommodation(@RequestHeader(value = "Authorization", required = false) String token, @PathVariable Long id) {
 
         return accommodationService.findById(token, id);
-    }
-
-    @GetMapping("/accommodations")
-    public Page<Accommodation> getAllAccommodations(@PageableDefault(size = 20) Pageable page) {
-
-        return accommodationService.findAccommodations(page);
     }
 
     @GetMapping("/accommodations/city/{city}")
