@@ -41,14 +41,6 @@ class AccommodationControllerTest {
                 .andExpect(jsonPath("$.contact").value("010-1234-1234"));
     }
 
-    @DisplayName("모든 숙박 검색")
-    @Test
-    void getAllAccommodations() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/accommodations"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", hasSize(3)));
-    }
-
     @DisplayName("도시 명으로 숙박 검색")
     @Test
     void getAccommodationsByCity() throws Exception {

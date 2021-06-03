@@ -28,6 +28,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AccommodationService {
 
     private final AccommodationPictureRepository accommodationPictureRepository;
@@ -47,11 +48,6 @@ public class AccommodationService {
         }
 
         return setListObjects(accommodationDto);
-    }
-
-    public Page<Accommodation> findAccommodations(Pageable pageable) {
-
-        return accRepository.findAccommodationsBy(pageable);
     }
 
     public Page<SearchAccommodationDto> findByCity(String token, String city, Pageable page) {
