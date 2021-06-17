@@ -25,7 +25,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
